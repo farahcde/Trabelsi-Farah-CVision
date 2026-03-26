@@ -63,7 +63,6 @@ h1 {
 
 <div class="container">
 
-<!-- FORMULAIRE -->
 <div class="formulaire">
     <h2>Créer votre CV</h2>
 
@@ -85,7 +84,6 @@ h1 {
     <button onclick="printCV()">🖨️ Imprimer / Télécharger</button>
 </div>
 
-<!-- CV -->
 <div class="cv" id="cv">
     <h1 id="cvNom">Nom Prénom</h1>
     <p id="cvEmail"></p>
@@ -110,7 +108,6 @@ h1 {
 </div>
 
 <script>
-// Mise à jour en temps réel
 document.getElementById("nom").addEventListener("input", updateNom);
 document.getElementById("prenom").addEventListener("input", updateNom);
 
@@ -132,7 +129,6 @@ document.getElementById("profil").addEventListener("input", function() {
     document.getElementById("cvProfil").textContent = this.value;
 });
 
-// Ajouter expérience
 function addExp() {
     let input = document.createElement("input");
     input.placeholder = "Nouvelle expérience";
@@ -157,7 +153,6 @@ function updateExp() {
     });
 }
 
-// Ajouter compétence
 function addSkill() {
     let input = document.createElement("input");
     input.placeholder = "Nouvelle compétence";
@@ -182,7 +177,6 @@ function updateSkills() {
     });
 }
 
-// Impression
 function printCV() {
     window.print();
 }
