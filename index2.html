@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>CVision - Générateur de CV</title>
+
+<style>
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(120deg, #1a364f, #97b7b9);
+}
+
+.hero {
+    text-align: center;
+    color: white;
+    padding: 60px 20px;
+}
+
+.hero h1 {
+    font-size: 40px;
+}
+
+.hero p {
+    font-size: 18px;
+    opacity: 0.9;
+}
+
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background: white;
+    padding: 30px;
+    gap: 20px;
+}
+
+.feature {
+    width: 250px;
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+}
+
+.feature h3 {
+    color: #021b31;;
+}
+
+/*main*/
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.formulaire {
+    width: 40%;
+    background: #ffffff;
+    padding: 20px;
+}
+
+.formulaire h2 {
+    color: #113a5e;;
+}
+
+.cv {
+    width: 60%;
+    background: white;
+    padding: 40px;
+}
+
+input, textarea {
+    width: 100%;
+    margin: 6px 0;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 10px;
+    margin-top: 10px;
+    background: #0d7966;;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #113a5e;;
+}
+
+/*design cv*/
+.cv-header {
+    border-bottom: 2px solid #054e41;
+    margin-bottom: 20px;
+}
+
+.cv-header h1 {
+    margin: 0;
+}
+
+.section {
+    margin-top: 20px;
+}
+
+.section h3 {
+    color: #113a5e;
+}
+
+/*affichage*/
+@media print {
+    .hero, .features, .formulaire {
+        display: none;
+    }
+
+    .cv {
+        width: 100%;
+    }
+
+    body {
+        background: white;
+    }
+}
+
+@media(max-width: 768px) {
+    .formulaire, .cv {
+        width: 100%;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="hero">
+    <h1>CVision</h1>
+    <p>Créez un CV qui vous ouvre des portes, pas juste des opportunités.</p>
+</div>
+
+<div class="features">
+    <div class="feature">
+        <h3> CV Gratuit</h3>
+        <p>Créez et modifiez votre CV sans limite.</p>
+    </div>
+
+    <div class="feature">
+        <h3>Téléchargement PDF</h3>
+        <p>Imprimez votre CV à tout moment.</p>
+    </div>
+
+    <div class="feature">
+        <h3> Design Moderne</h3>
+        <p>Un CV professionnel et élégant.</p>
+    </div>
+
+    <div class="feature">
+        <h3> Confidentialité</h3>
+        <p>Vos données restent privées.</p>
+    </div>
+</div>
+
+<div class="container">
+
+<div class="formulaire">
+    <h2>Créer votre CV</h2>
+
+    <input id="nom" placeholder="Nom">
+    <input id="titre" placeholder="Titre professionnel">
+    <input id="email" placeholder="Email">
+    <input id="tel" placeholder="Téléphone">
+    <input id="ville" placeholder="Ville">
+
+    <textarea id="profil" placeholder="Résumé professionnel"></textarea>
+
+    <h3>Expériences</h3>
+    <button onclick="addExp()">Ajouter</button>
+    <div id="expContainer"></div>
+
+    <h3>Compétences</h3>
+    <button onclick="addSkill()">Ajouter</button>
+    <div id="skillContainer"></div>
+
+    <button onclick="printCV()"> Télécharger CV</button>
+</div>
+
+<div class="cv" id="cv">
+
+    <div class="cv-header">
+        <h1 id="cvNom">Nom</h1>
+        <p id="cvTitre"></p>
+        <p id="cvContact"></p>
+    </div>
+
+    <div class="section">
+        <h3>Profil</h3>
+        <p id="cvProfil"></p>
+    </div>
+
+    <div class="section">
+        <h3>Expériences</h3>
+        <div id="cvExp"></div>
+    </div>
+
+    <div class="section">
+        <h3>Compétences</h3>
+        <ul id="cvSkills"></ul>
+    </div>
+
+</div>
+
+</div>
+
+<script>
+
+document.getElementById("nom").oninput = () =>
+    document.getElementById("cvNom").textContent = nom.value;
+
+document.getElementById("titre").oninput = () =>
+    document.getElementById("cvTitre").textContent = titre.value;
+
+function updateContact() {
+    document.getElementById("cvContact").textContent =
+        email.value + " | " + tel.value + " | " + ville.value;
+}
+
+email.oninput = updateContact;
+tel.oninput = updateContact;
+ville.oninput = updateContact;
+
+profil.oninput = () =>
+    document.getElementById("cvProfil").textContent = profil.value;
+
+function addExp() {
+    let input = document.createElement("input");
+    input.placeholder = "Ex: Stage chez X...";
+    input.oninput = updateExp;
+    expContainer.appendChild(input);
+}
+
+function updateExp() {
+    cvExp.innerHTML = "";
+    document.querySelectorAll("#expContainer input").forEach(i => {
+        let p = document.createElement("p");
+        p.textContent = "• " + i.value;
+        cvExp.appendChild(p);
+    });
+}
+
+function addSkill() {
+    let input = document.createElement("input");
+    input.placeholder = "Ex: JavaScript";
+    input.oninput = updateSkills;
+    skillContainer.appendChild(input);
+}
+
+function updateSkills() {
+    cvSkills.innerHTML = "";
+    document.querySelectorAll("#skillContainer input").forEach(i => {
+        let li = document.createElement("li");
+        li.textContent = i.value;
+        cvSkills.appendChild(li);
+    });
+}
+
+function printCV() {
+    window.print();
+}
+
+</script>
+
+</body>
+</html>
