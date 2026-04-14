@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>CVision</title>
+
+<style>
+
+body {
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background: linear-gradient(120deg, #1a364f, #97b7b9);
+}
+
+.hero {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:50px;
+  color:white;
+}
+
+.hero-left {
+  width:50%;
+}
+
+.hero-left h1 {
+  font-size:42px;
+}
+
+.hero-left p {
+  font-size:16px;
+}
+
+/* EXAMPLE CV */
+.hero-right {
+  width:40%;
+  background:white;
+  color:black;
+  padding:20px;
+  border-radius:10px;
+}
+
+/* SECTIONS */
+.features, .steps {
+  background:white;
+  padding:30px;
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+.card {
+  width:250px;
+  padding:15px;
+  background:#f9f9f9;
+  border-radius:10px;
+  text-align:center;
+}
+
+.card h3 {
+  color:#021b31;
+}
+
+/* MAIN */
+.container {
+  display:flex;
+}
+
+.formulaire {
+  width:40%;
+  background:white;
+  padding:20px;
+}
+
+.formulaire h2 {
+  color:#113a5e;
+}
+
+.cv {
+  width:60%;
+  background:white;
+  padding:40px;
+}
+
+/* INPUT */
+input, textarea {
+  width:100%;
+  margin:5px 0;
+  padding:10px;
+  border-radius:8px;
+  border:1px solid #ccc;
+}
+
+textarea { min-height:60px; }
+
+/* CV HEADER */
+.cv-header {
+  text-align:center;
+  border-bottom:2px solid #113a5e;
+}
+
+.section h3 {
+  color:#113a5e;
+}
+
+/* THEMES (CV ONLY) */
+.theme1 .cv-header {border-color:#113a5e;}
+.theme2 .cv-header {border-color:#ff7e5f;}
+.theme3 .cv-header {border-color:#43cea2;}
+.theme4 .cv-header {border-color:#f7971e;}
+
+/* PRINT */
+@media print {
+  .hero,.features,.steps,.formulaire,.footer {display:none;}
+  body {background:white;}
+  .cv {width:100%;}
+}
+
+/* FOOTER */
+.footer {
+  background:#021b31;
+  color:white;
+  padding:30px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <h1>CVision</h1>
+    <p><b>Créez un CV gagnant gratuitement</b></p>
+    <p>Votre premier CV est 100% gratuit à vie. Téléchargements illimités. Aucun frais caché.</p>
+  </div>
+
+  <div class="hero-right">
+    <h3>Exemple de CV</h3>
+    <b>Jean Dupont</b><br>
+    Développeur Web<br>
+    jean@mail.com | 12345678 | Paris | github.com/jdupont
+    <hr>
+    <b>Profil :</b> Développeur passionné avec expérience en JavaScript et React.
+    <br><b>Expériences :</b> Stage chez X (2024) - développement web
+    <br><b>Projets :</b> Site e-commerce, App mobile
+    <br><b>Formation :</b> Licence Informatique
+    <br><b>Compétences :</b> HTML, CSS, JS
+    <br><b>Soft Skills :</b> Communication, Travail d'équipe
+    <br><b>Langues :</b> Français, Anglais
+  </div>
+</div>
+
+<!-- FEATURES -->
+<div class="features">
+  <div class="card"><h3>Ce que CVision vous offre</h3><p>CV gratuit et modifiable sans limite</p></div>
+  <div class="card"><h3>Téléchargement PDF</h3><p>Imprimez à tout moment</p></div>
+  <div class="card"><h3>Design Moderne</h3><p>CV professionnel et élégant</p></div>
+  <div class="card"><h3>Confidentialité</h3><p>Vos données sont protégées</p></div>
+</div>
+
+<!-- STEPS -->
+<div class="steps">
+  <div class="card"><h3>Comment fonctionne CVision</h3><p>Remplissez votre CV facilement étape par étape</p></div>
+  <div class="card"><h3>Choisissez un design</h3><p>Sélectionnez un thème adapté</p></div>
+  <div class="card"><h3>Téléchargez</h3><p>Exportez votre CV en PDF</p></div>
+</div>
+
+<!-- MAIN -->
+<div class="container">
+
+<div class="formulaire">
+<h2>Créer votre CV</h2>
+
+<input id="nom" placeholder="Nom *">
+<input id="prenom" placeholder="Prénom *">
+<input id="titre" placeholder="Titre *">
+<input id="email" placeholder="Email *">
+<input id="tel" placeholder="Téléphone *">
+<input id="ville" placeholder="Ville *">
+<input id="github" placeholder="GitHub">
+
+<textarea id="profil" placeholder="Profil *"></textarea>
+
+<h3>Expériences</h3><div id="expContainer"></div>
+<button onclick="addField('expContainer','Expérience')">Ajouter</button>
+
+<h3>Projets</h3><div id="projContainer"></div>
+<button onclick="addField('projContainer','Projet')">Ajouter</button>
+
+<h3>Formation</h3><div id="formContainer"></div>
+<button onclick="addField('formContainer','Formation')">Ajouter</button>
+
+<h3>Compétences</h3><div id="skillContainer"></div>
+<button onclick="addField('skillContainer','Compétence')">Ajouter</button>
+
+<h3>Soft Skills</h3><div id="softContainer"></div>
+<button onclick="addField('softContainer','Soft Skill')">Ajouter</button>
+
+<h3>Langues</h3><div id="langContainer"></div>
+<button onclick="addField('langContainer','Langue')">Ajouter</button>
+
+<h3>Thèmes</h3>
+<button onclick="setTheme('theme1')">Bleu</button>
+<button onclick="setTheme('theme2')">Orange</button>
+<button onclick="setTheme('theme3')">Vert</button>
+<button onclick="setTheme('theme4')">Jaune</button>
+
+<button onclick="printCV()">📄 Télécharger CV</button>
+
+</div>
+
+<div class="cv theme1" id="cv">
+
+<div class="cv-header">
+<h1 id="cvNom">Nom Prénom</h1>
+<p id="cvTitre"></p>
+<p id="cvContact"></p>
+</div>
+
+<div class="section"><h3>Profil</h3><p id="cvProfil"></p></div>
+<div class="section"><h3>Expériences</h3><div id="cvExp"></div></div>
+<div class="section"><h3>Projets</h3><div id="cvProj"></div></div>
+<div class="section"><h3>Formation</h3><div id="cvForm"></div></div>
+<div class="section"><h3>Compétences</h3><div id="cvSkills"></div></div>
+<div class="section"><h3>Soft Skills</h3><div id="cvSoft"></div></div>
+<div class="section"><h3>Langues</h3><div id="cvLang"></div></div>
+
+</div>
+
+</div>
+
+<!--pieds de page-->
+<div class="footer">
+<h2>À propos</h2>
+<p>CVision est une plateforme permettant de créer facilement des CV professionnels modernes.</p>
+
+<h3>Contact</h3>
+<p>contact@cvision.com</p>
+
+<p>© 2026 CVision</p>
+</div>
+
+<script>
+
+function updateNom(){
+  cvNom.textContent = prenom.value + " " + nom.value;
+}
+
+nom.oninput = updateNom;
+prenom.oninput = updateNom;
+
+titre.oninput = ()=> cvTitre.textContent = titre.value;
+
+function updateContact(){
+  cvContact.textContent =
+    email.value+" | "+tel.value+" | "+ville.value +
+    (github.value ? " | "+github.value : "");
+}
+
+email.oninput = updateContact;
+tel.oninput = updateContact;
+ville.oninput = updateContact;
+github.oninput = updateContact;
+
+profil.oninput = ()=> cvProfil.textContent = profil.value;
+
+function addField(id,label){
+  let i=document.createElement("textarea");
+  i.placeholder=label;
+  i.oninput=()=>updateSection(id);
+  document.getElementById(id).appendChild(i);
+}
+
+function updateSection(id){
+  let map={
+    expContainer:"cvExp",
+    projContainer:"cvProj",
+    formContainer:"cvForm",
+    skillContainer:"cvSkills",
+    softContainer:"cvSoft",
+    langContainer:"cvLang"
+  };
+
+  let target=document.getElementById(map[id]);
+  target.innerHTML="";
+
+  document.querySelectorAll("#"+id+" textarea").forEach(el=>{
+    let p=document.createElement("p");
+    p.textContent="• "+el.value;
+    target.appendChild(p);
+  });
+}
+
+function setTheme(t){
+  cv.className="cv "+t;
+}
+
+function validate(){
+  let req=["nom","prenom","titre","email","tel","ville","profil"];
+  for(let r of req){
+    if(!document.getElementById(r).value){
+      alert("Remplissez les champs obligatoires !");
+      return false;
+    }
+  }
+  return true;
+}
+
+function printCV(){
+  if(!validate()) return;
+  window.print();
+}
+
+</script>
+
+</body>
+</html>
