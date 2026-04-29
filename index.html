@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>CVision</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- nav -->
+<nav>
+  <span class="logo">CVision</span>
+  <ul>
+    <li><a href="#features">Fonctionnalités</a></li>
+    <li><a href="#how">Comment ça marche</a></li>
+    <li><a href="#editeur">Créer mon CV</a></li>
+  </ul>
+</nav>
+
+<!--en-tête du site-->
+<div class="hero">
+
+  <div class="hero-left">
+    <div class="hero-badge">100% Gratuit · Sans inscription</div>
+    <h1>CVision</h1>
+
+    <p class="slogan">
+      Créez un CV gagnant gratuitement
+    </p>
+
+    <p class="desc">
+      Votre premier CV est 100% gratuit à vie.<br>
+      Téléchargements illimités. Aucun frais caché.<br><br>
+      Créez un CV moderne, clair et professionnel en quelques minutes seulement.
+    </p>
+
+    <ul class="hero-points">
+      <li>Facile à utiliser</li>
+      <li>Design professionnel</li>
+      <li>Téléchargement rapide</li>
+    </ul>
+
+    <button class="btn-hero" onclick="document.getElementById('editeur').scrollIntoView({behavior:'smooth'})">Créer mon CV</button>
+  </div>
+
+  <div class="hero-right">
+    <!-- exemple de cv genere avec cvision -->
+    <p class="hero-right-label">Voici un exemple de CV créé avec CVision</p>
+    <p><b>Jean Dupont</b><br>Développeur Web</p>
+    <p>jean@mail.com | 12345678 | Paris | github.com/jdupont</p>
+
+    <hr>
+
+    <p><b>Profil :</b> Étudiant motivé en informatique avec projets en JavaScript.</p>
+    <p><b>Expériences :</b> Stage développement web (2024)</p>
+    <p><b>Projets :</b> Site e-commerce, App mobile</p>
+    <p><b>Formation :</b> Licence Informatique</p>
+    <p><b>Compétences :</b> HTML, CSS, JS</p>
+    <p><b>Soft Skills :</b> Autonome, Rigoureux</p>
+  </div>
+
+</div>
+
+<div id="features" class="section-title">
+  <h2>Ce que CVision vous offre</h2>
+  <p>Un outil simple mais puissant pour créer un CV professionnel</p>
+</div>
+<!--fonctionnalités du site-->
+<div class="features">
+
+  <div class="card">
+    <h3>Gratuité</h3>
+    <p>CV gratuit et modifiable sans limite</p>
+  </div>
+
+  <div class="card">
+    <h3>Téléchargement PDF</h3>
+    <p>Imprimez à tout moment</p>
+  </div>
+
+  <div class="card">
+    <h3>Design Moderne</h3>
+    <p>CV professionnel et élégant</p>
+  </div>
+
+  <div class="card">
+    <h3>Confidentialité</h3>
+    <p>Vos données sont protégées</p>
+  </div>
+</div>
+
+<div id="how" class="section-title">
+  <h2>Comment fonctionne CVision</h2>
+  <p>3 étapes simples pour créer votre CV</p>
+</div>
+<div class="steps">
+  <div class="step">
+    <div class="step-num">1</div>
+    <h3>Ajoutez votre contenu</h3>
+    <p>Remplissez votre CV facilement étape par étape</p>
+  </div>
+
+  <div class="step">
+    <div class="step-num">2</div>
+    <h3>Choisissez un design</h3>
+    <p>Sélectionnez un thème et une police</p>
+  </div>
+
+  <div class="step">
+    <div class="step-num">3</div>
+    <h3>Téléchargez</h3>
+    <p>Exportez votre CV en PDF en un clic</p>
+  </div>
+</div>
+
+<!--corps du site-->
+<div class="container" id="editeur">
+
+  <!--formulaire-->
+  <div class="formulaire">
+
+    <h2>Créer votre CV</h2>
+    <p class="note">*: champs obligatoires</p>
+
+    <input type="file" id="photo" accept="image/*">
+
+    <input id="nom" placeholder="Nom *">
+    <input id="prenom" placeholder="Prénom *">
+    <input id="titre" placeholder="Titre *">
+    <input id="email" type="email" placeholder="Email *">
+    <input id="tel" type="tel" pattern="[0-9]{8}" placeholder="Téléphone *">
+    <input id="ville" placeholder="Ville *">
+    <input id="github" placeholder="GitHub">
+
+    <textarea id="profil" placeholder="Profil *"></textarea>
+
+    <h3>Expériences</h3>
+    <div id="expContainer"></div>
+    <button onclick="addExp()">Ajouter</button>
+
+    <!-- section formation ajoutee -->
+    <h3>Formation</h3>
+    <div id="formationContainer"></div>
+    <button onclick="addFormation()">Ajouter</button>
+
+    <h3>Compétences</h3>
+    <div id="skillContainer"></div>
+    <button onclick="addSkill()">Ajouter</button>
+
+    <h3>Soft Skills</h3>
+    <input id="softInput" placeholder="Ajouter un soft skill">
+
+    <div id="suggestions">
+      <span onclick="addTag('Esprit d\'équipe')">Esprit d'équipe</span>
+      <span onclick="addTag('Autonome')">Autonome</span>
+      <span onclick="addTag('Rigoureux')">Rigoureux</span>
+      <span onclick="addTag('Créatif')">Créatif</span>
+    </div>
+
+    <h3>Thème</h3>
+    <select onchange="setTheme(this.value)">
+      <option value="theme0">Noir</option>
+      <option value="theme1">Bleu</option>
+      <option value="theme2">Vert</option>
+      <option value="theme3">Marron</option>
+    </select>
+
+    <h3>Police</h3>
+    <select onchange="setFont(this.value)">
+      <option value="Arial">Arial</option>
+      <option value="Georgia">Georgia</option>
+      <option value="Courier New">Courier</option>
+    </select>
+
+    <br><br>
+    <div class="btn-group">
+      <button onclick="resetForm()">Réinitialiser</button>
+      <button class="btn-dl" onclick="printCV()">Télécharger CV</button>
+    </div>
+
+  </div>
+
+  <!--aperçu du cv-->
+  <div class="cv-wrapper">
+    <div class="cv-wrapper-label">apercu en temps reel</div>
+    <div class="cv theme0" id="cv">
+
+      <!-- photo de profil -->
+      <img id="cvPhoto" class="photo">
+
+      <div class="cv-header">
+        <h1 id="cvNom">Nom Prénom</h1>
+        <p id="cvTitre"></p>
+        <p id="cvContact"></p>
+      </div>
+
+      <div class="section">
+        <h3>Profil</h3>
+        <p id="cvProfil"></p>
+      </div>
+
+      <div class="section">
+        <h3>Expériences</h3>
+        <div id="cvExp"></div>
+      </div>
+
+      <!-- section formation dans l'apercu -->
+      <div class="section">
+        <h3>Formation</h3>
+        <div id="cvFormation"></div>
+      </div>
+
+      <div class="section">
+        <h3>Compétences</h3>
+        <div id="cvSkills"></div>
+      </div>
+
+      <div class="section">
+        <h3>Soft Skills</h3>
+        <div id="cvSoft"></div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!--pieds de page-->
+<div class="footer">
+  <h2>À propos</h2>
+  <p>CVision est une plateforme permettant de créer facilement des CV professionnels modernes.</p>
+  <h3>Contact</h3>
+  <p>contact@cvision.com</p>
+  <p>© 2026 CVision</p>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
