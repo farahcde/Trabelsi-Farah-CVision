@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>CVision</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+
+<style>
+
+body {
+  margin:0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #0d1f1a, #132d25, #1a3d30);
+  color:#fff;
+}
+
+/* nav */
+nav {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 80px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+nav .logo {
+  font-family: 'DM Serif Display', serif;
+  font-size:24px;
+  background: linear-gradient(90deg, #2ecc8e, #00d4ff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+nav ul {
+  display:flex;
+  gap:30px;
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+
+nav ul a {
+  color:rgba(255,255,255,0.55);
+  text-decoration:none;
+  font-size:14px;
+  font-weight:500;
+  transition: color 0.2s;
+}
+
+nav ul a:hover {
+  color:#fff;
+}
+
+/* HERO */
+.hero {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:80px;
+  gap:50px;
+}
+
+.hero-left h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size:60px;
+  background: linear-gradient(90deg, #2ecc8e, #00d4ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing:-1px;
+}
+
+.slogan {
+  font-size:22px;
+  font-weight:600;
+  margin:15px 0;
+  color:#ccefff;
+}
+
+.desc {
+  font-size:16px;
+  line-height:1.7;
+  color:#dfefff;
+}
+
+.hero-points li {
+  margin:8px 0;
+  list-style:none;
+}
+
+.hero-points li::before {
+  content:"•";
+  margin-right:10px;
+  color:#2ecc8e;
+}
+
+/*badge 100% gratuit*/
+.hero-badge {
+  display:inline-block;
+  background: rgba(46,204,142,0.12);
+  border: 1px solid rgba(46,204,142,0.35);
+  color:#2ecc8e;
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:0.07em;
+  padding:5px 14px;
+  border-radius:100px;
+  margin-bottom:20px;
+}
+
+/*bouton principal*/
+.btn-hero {
+  margin-top:20px;
+  background: linear-gradient(90deg, #1a6b52, #2ecc8e);
+  color:#fff;
+  border:none;
+  padding:13px 28px;
+  border-radius:100px;
+  font-family:'Poppins',sans-serif;
+  font-size:14px;
+  font-weight:600;
+  cursor:pointer;
+  transition: all 0.25s;
+}
+
+.btn-hero:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(46,204,142,0.4);
+}
+
+.hero-right {
+  width:40%;
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(15px);
+  padding:25px;
+  border-radius:20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  color:#fff;
+  border: 1px solid rgba(46,204,142,0.15);
+  /* legere rotation pour effet carte */
+  transform: rotate(1.5deg);
+  transition: transform 0.3s;
+}
+
+.hero-right:hover {
+  transform: rotate(0deg) scale(1.01);
+}
+
+/*exemple*/
+.hero-right-label {
+  font-size:11px;
+  font-style:italic;
+  color:rgba(255,255,255,0.4);
+  margin-bottom:12px;
+}
+
+/* TITLES */
+.section-title {
+  text-align:center;
+  padding:60px 20px;
+}
+
+.section-title h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size:36px;
+  margin-bottom:8px;
+}
+
+.section-title p {
+  color:#bbb;
+}
+
+/* FEATURES */
+.features {
+  display:flex;
+  justify-content:center;
+  gap:25px;
+  padding:40px;
+}
+
+.card {
+  background: rgba(46,204,142,0.06);
+  padding:25px;
+  border-radius:15px;
+  backdrop-filter: blur(10px);
+  transition:0.3s;
+  width:200px;
+  text-align:center;
+  border: 1px solid rgba(46,204,142,0.12);
+  /* pseudo-element lueur interne */
+  position:relative;
+  overflow:hidden;
+}
+
+/* lueur de fond au hover */
+.card::before {
+  content:'';
+  position:absolute;
+  bottom:-40px;
+  right:-40px;
+  width:100px;
+  height:100px;
+  background: radial-gradient(circle, rgba(46,204,142,0.15), transparent);
+  border-radius:50%;
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform:translateY(-10px) scale(1.05);
+  border-color: rgba(46,204,142,0.4);
+  background: rgba(46,204,142,0.1);
+}
+
+.card:hover::before {
+  transform: scale(2);
+}
+
+/* STEPS */
+.steps {
+  display:flex;
+  justify-content:center;
+  gap:30px;
+  padding:50px;
+}
+
+.step {
+  width:250px;
+  padding:25px;
+  border-radius:15px;
+  background: linear-gradient(145deg, #0f2218, #162e22);
+  border: 1px solid rgba(46,204,142,0.12);
+  transition: border-color 0.3s;
+}
+
+.step:hover {
+  border-color: rgba(46,204,142,0.3);
+}
+
+/*num de step */
+.step-num {
+  width:40px;
+  height:40px;
+  background: rgba(46,204,142,0.15);
+  border: 1px solid rgba(46,204,142,0.3);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  font-size:16px;
+  color:#2ecc8e;
+  margin-bottom:14px;
+}
+
+.container {
+  display:flex;
+  gap:20px;
+  padding:40px;
+}
+
+.formulaire {
+  width:40%;
+  background: rgba(255,255,255,0.04);
+  padding:25px;
+  border-radius:20px;
+  border: 1px solid rgba(255,255,255,0.07);
+  /* formulaire fixe pendant le scroll */
+  position:sticky;
+  top:20px;
+  align-self:flex-start;
+}
+
+.formulaire h3 {
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:#2ecc8e;
+  margin:18px 0 6px;
+}
+
+/* wrapper de l'apercu cv */
+.cv-wrapper {
+  width:60%;
+  background:#dde5e2;
+  border-radius:20px;
+  padding:16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+}
+
+.cv-wrapper-label {
+  font-size:10px;
+  font-weight:600;
+  letter-spacing:0.07em;
+  text-transform:uppercase;
+  color:#7a9088;
+  margin-bottom:10px;
+}
+
+.cv {
+  width:100%;
+  background:white;
+  color:black;
+  padding:30px;
+  border-radius:14px;
+  border-top:6px solid var(--c);
+  box-sizing:border-box;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+.cv-header {
+  text-align:center;
+  border-bottom:3px solid var(--c);
+  padding-bottom:14px;
+  margin-bottom:14px;
+}
+
+/* nom dans le cv */
+.cv-header h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size:28px;
+  color:#111;
+  margin-bottom:4px;
+}
+
+.cv-header p {
+  font-size:13px;
+  color:#555;
+  margin:2px 0;
+}
+
+.section {
+  margin-bottom:18px;
+}
+
+.section h3 {
+  color: var(--c);
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  /* separateur sous les titres de section */
+  border-bottom: 1px solid var(--c);
+  padding-bottom:4px;
+  margin-bottom:8px;
+  opacity:0.9;
+}
+
+.section p {
+  font-size:13px;
+  color:#333;
+  line-height:1.6;
+  margin:4px 0;
+}
+
+/* THEMES */
+.theme0 { --c:#000; }
+.theme1 { --c:#2f404a; }
+.theme2 { --c:#01360f; }
+.theme3 { --c:#311810; }
+
+/* INPUTS */
+input, textarea {
+  width:100%;
+  margin:8px 0;
+  padding:12px;
+  border-radius:10px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.07);
+  color:white;
+  transition: border-color 0.2s;
+  outline: none;
+  box-sizing: border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+input:focus, textarea:focus {
+  border-color: rgba(46,204,142,0.5);
+}
+
+input::placeholder, textarea::placeholder {
+  color: rgba(255,255,255,0.3);
+}
+
+select {
+  background: rgba(255,255,255,0.07);
+  color:white;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius:10px;
+  padding:10px;
+  width:100%;
+  margin:8px 0;
+  outline:none;
+  font-family:'Poppins',sans-serif;
+}
+
+select option {
+  color:black;
+}
+
+/* BUTTON */
+button {
+  background: rgba(46,204,142,0.15);
+  color:#2ecc8e;
+  border: 1px solid rgba(46,204,142,0.3);
+  padding:12px;
+  border-radius:10px;
+  cursor:pointer;
+  transition: all 0.2s;
+  font-family:'Poppins',sans-serif;
+  font-weight:500;
+}
+
+button:hover {
+  background: rgba(46,204,142,0.25);
+  transform: translateY(-2px);
+}
+
+.btn-dl {
+  background: linear-gradient(90deg, #1a6b52, #2ecc8e);
+  color:#fff;
+  border:none;
+  width:100%;
+  padding:13px;
+  font-size:14px;
+  font-weight:600;
+  border-radius:10px;
+  margin-top:4px;
+}
+
+.btn-dl:hover {
+  box-shadow: 0 8px 20px rgba(46,204,142,0.35);
+  transform: translateY(-2px);
+}
+
+.btn-group {
+  display:flex;
+  gap:10px;
+  margin-top:10px;
+}
+
+/*champs dynamiques*/
+.dynamic-field {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius:10px;
+  padding:10px;
+  margin-bottom:8px;
+  position:relative;
+}
+
+/*btn supprimer champ*/
+.rm-btn {
+  position:absolute;
+  top:8px;
+  right:8px;
+  background: rgba(220,50,50,0.2);
+  border:none;
+  color:rgba(255,100,100,0.9);
+  width:20px;
+  height:20px;
+  border-radius:5px;
+  cursor:pointer;
+  font-size:12px;
+  padding:0;
+}
+
+.rm-btn:hover {
+  background: rgba(220,50,50,0.4);
+  transform:none;
+  box-shadow:none;
+}
+
+/*suggestions soft skills */
+#suggestions {
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin:8px 0;
+}
+
+#suggestions span {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  color:rgba(255,255,255,0.7);
+  padding:4px 12px;
+  border-radius:100px;
+  font-size:12px;
+  cursor:pointer;
+  transition: all 0.2s;
+}
+
+#suggestions span:hover {
+  background: rgba(46,204,142,0.14);
+  color:#2ecc8e;
+  border-color:rgba(46,204,142,0.3);
+}
+
+/* PHOTO */
+.photo {
+  width:110px;
+  height:110px;
+  border-radius:50%;
+  border:4px solid var(--c);
+  box-shadow:0 0 15px var(--c);
+  /* cachee par defaut si pas de photo */
+  display:none;
+}
+
+/* FOOTER */
+.footer {
+  text-align:center;
+  padding:40px;
+  background:#061410;
+  border-top: 1px solid rgba(46,204,142,0.1);
+}
+
+/* PRINT */
+@media print {
+  body * { visibility:hidden; }
+  .cv, .cv * { visibility:visible; }
+  .cv {
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    border-radius:0;
+    box-shadow:none;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<!-- nav -->
+<nav>
+  <span class="logo">CVision</span>
+  <ul>
+    <li><a href="#features">Fonctionnalités</a></li>
+    <li><a href="#how">Comment ça marche</a></li>
+    <li><a href="#editeur">Créer mon CV</a></li>
+  </ul>
+</nav>
+
+<!--en-tête du site-->
+<div class="hero">
+
+  <div class="hero-left">
+    <div class="hero-badge">100% Gratuit · Sans inscription</div>
+    <h1>CVision</h1>
+
+    <p class="slogan">
+      Créez un CV gagnant gratuitement
+    </p>
+
+    <p class="desc">
+      Votre premier CV est 100% gratuit à vie.<br>
+      Téléchargements illimités. Aucun frais caché.<br><br>
+      Créez un CV moderne, clair et professionnel en quelques minutes seulement.
+    </p>
+
+    <ul class="hero-points">
+      <li>Facile à utiliser</li>
+      <li>Design professionnel</li>
+      <li>Téléchargement rapide</li>
+    </ul>
+
+    <button class="btn-hero" onclick="document.getElementById('editeur').scrollIntoView({behavior:'smooth'})">Créer mon CV</button>
+  </div>
+
+  <div class="hero-right">
+    <!-- exemple de cv genere avec cvision -->
+    <p class="hero-right-label">Voici un exemple de CV créé avec CVision</p>
+    <p><b>Jean Dupont</b><br>Développeur Web</p>
+    <p>jean@mail.com | 12345678 | Paris | github.com/jdupont</p>
+
+    <hr>
+
+    <p><b>Profil :</b> Étudiant motivé en informatique avec projets en JavaScript.</p>
+    <p><b>Expériences :</b> Stage développement web (2024)</p>
+    <p><b>Projets :</b> Site e-commerce, App mobile</p>
+    <p><b>Formation :</b> Licence Informatique</p>
+    <p><b>Compétences :</b> HTML, CSS, JS</p>
+    <p><b>Soft Skills :</b> Autonome, Rigoureux</p>
+  </div>
+
+</div>
+
+<div id="features" class="section-title">
+  <h2>Ce que CVision vous offre</h2>
+  <p>Un outil simple mais puissant pour créer un CV professionnel</p>
+</div>
+<!--fonctionnalités du site-->
+<div class="features">
+
+  <div class="card">
+    <h3>Gratuité</h3>
+    <p>CV gratuit et modifiable sans limite</p>
+  </div>
+
+  <div class="card">
+    <h3>Téléchargement PDF</h3>
+    <p>Imprimez à tout moment</p>
+  </div>
+
+  <div class="card">
+    <h3>Design Moderne</h3>
+    <p>CV professionnel et élégant</p>
+  </div>
+
+  <div class="card">
+    <h3>Confidentialité</h3>
+    <p>Vos données sont protégées</p>
+  </div>
+</div>
+
+<div id="how" class="section-title">
+  <h2>Comment fonctionne CVision</h2>
+  <p>3 étapes simples pour créer votre CV</p>
+</div>
+<div class="steps">
+  <div class="step">
+    <div class="step-num">1</div>
+    <h3>Ajoutez votre contenu</h3>
+    <p>Remplissez votre CV facilement étape par étape</p>
+  </div>
+
+  <div class="step">
+    <div class="step-num">2</div>
+    <h3>Choisissez un design</h3>
+    <p>Sélectionnez un thème et une police</p>
+  </div>
+
+  <div class="step">
+    <div class="step-num">3</div>
+    <h3>Téléchargez</h3>
+    <p>Exportez votre CV en PDF en un clic</p>
+  </div>
+</div>
+
+<!--corps du site-->
+<div class="container" id="editeur">
+
+  <!--formulaire-->
+  <div class="formulaire">
+
+    <h2>Créer votre CV</h2>
+    <p class="note">*: champs obligatoires</p>
+
+    <input type="file" id="photo" accept="image/*">
+
+    <input id="nom" placeholder="Nom *">
+    <input id="prenom" placeholder="Prénom *">
+    <input id="titre" placeholder="Titre *">
+    <input id="email" type="email" placeholder="Email *">
+    <input id="tel" type="tel" pattern="[0-9]{8}" placeholder="Téléphone *">
+    <input id="ville" placeholder="Ville *">
+    <input id="github" placeholder="GitHub">
+
+    <textarea id="profil" placeholder="Profil *"></textarea>
+
+    <h3>Expériences</h3>
+    <div id="expContainer"></div>
+    <button onclick="addExp()">Ajouter</button>
+
+    <!-- section formation ajoutee -->
+    <h3>Formation</h3>
+    <div id="formationContainer"></div>
+    <button onclick="addFormation()">Ajouter</button>
+
+    <h3>Compétences</h3>
+    <div id="skillContainer"></div>
+    <button onclick="addSkill()">Ajouter</button>
+
+    <h3>Soft Skills</h3>
+    <input id="softInput" placeholder="Ajouter un soft skill">
+
+    <div id="suggestions">
+      <span onclick="addTag('Esprit d\'équipe')">Esprit d'équipe</span>
+      <span onclick="addTag('Autonome')">Autonome</span>
+      <span onclick="addTag('Rigoureux')">Rigoureux</span>
+      <span onclick="addTag('Créatif')">Créatif</span>
+    </div>
+
+    <h3>Thème</h3>
+    <select onchange="setTheme(this.value)">
+      <option value="theme0">Noir</option>
+      <option value="theme1">Bleu</option>
+      <option value="theme2">Vert</option>
+      <option value="theme3">Marron</option>
+    </select>
+
+    <h3>Police</h3>
+    <select onchange="setFont(this.value)">
+      <option value="Arial">Arial</option>
+      <option value="Georgia">Georgia</option>
+      <option value="Courier New">Courier</option>
+    </select>
+
+    <br><br>
+    <div class="btn-group">
+      <button onclick="resetForm()">Réinitialiser</button>
+      <button class="btn-dl" onclick="printCV()">Télécharger CV</button>
+    </div>
+
+  </div>
+
+  <!--aperçu du cv-->
+  <div class="cv-wrapper">
+    <div class="cv-wrapper-label">apercu en temps reel</div>
+    <div class="cv theme0" id="cv">
+
+      <!-- photo de profil -->
+      <img id="cvPhoto" class="photo">
+
+      <div class="cv-header">
+        <h1 id="cvNom">Nom Prénom</h1>
+        <p id="cvTitre"></p>
+        <p id="cvContact"></p>
+      </div>
+
+      <div class="section">
+        <h3>Profil</h3>
+        <p id="cvProfil"></p>
+      </div>
+
+      <div class="section">
+        <h3>Expériences</h3>
+        <div id="cvExp"></div>
+      </div>
+
+      <!-- section formation dans l'apercu -->
+      <div class="section">
+        <h3>Formation</h3>
+        <div id="cvFormation"></div>
+      </div>
+
+      <div class="section">
+        <h3>Compétences</h3>
+        <div id="cvSkills"></div>
+      </div>
+
+      <div class="section">
+        <h3>Soft Skills</h3>
+        <div id="cvSoft"></div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!--pieds de page-->
+<div class="footer">
+  <h2>À propos</h2>
+  <p>CVision est une plateforme permettant de créer facilement des CV professionnels modernes.</p>
+  <h3>Contact</h3>
+  <p>contact@cvision.com</p>
+  <p>© 2026 CVision</p>
+</div>
+
+<script>
+
+/* mise a jour en temps reel*/
+function updateNom(){
+  cvNom.textContent = prenom.value + " " + nom.value;
+}
+nom.oninput = updateNom;
+prenom.oninput = updateNom;
+
+titre.oninput = () => cvTitre.textContent = titre.value;
+
+function updateContact(){
+  let parts = [email.value, tel.value, ville.value, github.value].filter(v => v !== "");
+  cvContact.textContent = parts.join(" | ");
+}
+email.oninput = updateContact;
+tel.oninput = updateContact;
+ville.oninput = updateContact;
+github.oninput = updateContact;
+
+profil.oninput = () => cvProfil.textContent = profil.value;
+
+function addExp(){
+  const d = document.createElement('div');
+  d.className = 'dynamic-field';
+  d.innerHTML = `<button class="rm-btn" onclick="this.parentElement.remove(); updateExp()">x</button>
+    <input placeholder="Poste (ex: Stage dev web)" oninput="updateExp()">
+    <input placeholder="Entreprise · Dates" oninput="updateExp()">`;
+  expContainer.appendChild(d);
+}
+
+function updateExp(){
+  let h = '';
+  document.querySelectorAll('#expContainer .dynamic-field').forEach(f => {
+    const ins = f.querySelectorAll('input');
+    if(ins[0].value) h += `<p><b>${ins[0].value}</b>${ins[1].value ? ' — '+ins[1].value : ''}</p>`;
+  });
+  cvExp.innerHTML = h;
+}
+
+function addFormation(){
+  const d = document.createElement('div');
+  d.className = 'dynamic-field';
+  d.innerHTML = `<button class="rm-btn" onclick="this.parentElement.remove(); updateFormation()">x</button>
+    <input placeholder="Diplome (ex: Licence Informatique)" oninput="updateFormation()">
+    <input placeholder="Etablissement · Annee" oninput="updateFormation()">`;
+  formationContainer.appendChild(d);
+}
+
+function updateFormation(){
+  let h = '';
+  document.querySelectorAll('#formationContainer .dynamic-field').forEach(f => {
+    const ins = f.querySelectorAll('input');
+    if(ins[0].value) h += `<p><b>${ins[0].value}</b>${ins[1].value ? ' — '+ins[1].value : ''}</p>`;
+  });
+  cvFormation.innerHTML = h;
+}
+
+function addSkill(){
+  const d = document.createElement('div');
+  d.className = 'dynamic-field';
+  d.innerHTML = `<button class="rm-btn" onclick="this.parentElement.remove(); updateSkills()">x</button>
+    <input placeholder="Compétence (ex: JavaScript)" oninput="updateSkills()">`;
+  skillContainer.appendChild(d);
+}
+
+function updateSkills(){
+  let h = '';
+  document.querySelectorAll('#skillContainer input').forEach(i => {
+    if(i.value) h += `<span style="margin-right:10px">• ${i.value}</span>`;
+  });
+  cvSkills.innerHTML = h;
+}
+
+/*soft skills (avec tableau pour eviter les doublons)*/
+const softList = [];
+
+function addTag(tag){
+  const v = tag || softInput.value.trim();
+  if(!v || softList.includes(v)) return;
+  softList.push(v);
+  renderSoft();
+  softInput.value = '';
+}
+
+function removeTag(t){
+  softList.splice(softList.indexOf(t), 1);
+  renderSoft();
+}
+
+function renderSoft(){
+  cvSoft.innerHTML = softList.map(t =>
+    `<span style="margin-right:8px;cursor:pointer" onclick="removeTag('${t}')" title="clic pour supprimer">• ${t}</span>`
+  ).join('');
+}
+
+softInput.onkeydown = e => { if(e.key === 'Enter'){ e.preventDefault(); addTag(); } };
+
+function setTheme(t){
+  cv.className = 'cv ' + t;
+}
+
+function setFont(f){
+  cv.style.fontFamily = f;
+}
+
+/* photo de profil*/
+document.getElementById('photo').onchange = function(e){
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    cvPhoto.src = ev.target.result;
+    cvPhoto.style.display = 'block';
+  };
+  reader.readAsDataURL(file);
+};
+
+function resetForm(){
+  ["nom","prenom","titre","email","tel","ville","github","profil","softInput"].forEach(id => {
+    document.getElementById(id).value = '';
+  });
+  expContainer.innerHTML = '';
+  formationContainer.innerHTML = '';
+  skillContainer.innerHTML = '';
+  softList.length = 0;
+  cvPhoto.src = ''; cvPhoto.style.display = 'none';
+  cvNom.textContent = 'Nom Prénom';
+  cvTitre.textContent = ''; cvContact.textContent = ''; cvProfil.textContent = '';
+  cvExp.innerHTML = ''; cvFormation.innerHTML = ''; cvSkills.innerHTML = ''; cvSoft.innerHTML = '';
+}
+
+function printCV(){
+  const vides = ["nom","prenom","titre","email","tel","ville","profil"].filter(id => document.getElementById(id).value === "");
+  if(vides.length > 0){
+    alert("Merci de remplir tous les champs obligatoires (*) avant de télécharger.");
+    document.getElementById(vides[0]).focus();
+    return;
+  }
+  window.print();
+}
+
+</script>
+</body>
+</html>
